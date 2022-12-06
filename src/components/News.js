@@ -26,7 +26,7 @@ export class News extends Component {
 
         this.state = {
             articles:[],
-            loading: false,
+            loading: true,
             page:1,
             totalResults:0
         }
@@ -105,7 +105,7 @@ export class News extends Component {
         return (
           <>
                 <h1 className='text-center'>NewsApp - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
-                {/* {this.state.loading && <Spinner/>} */}
+                {this.state.loading && <Spinner/>}
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
                     next={this.fetchMoreData}
