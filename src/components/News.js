@@ -33,8 +33,11 @@ export class News extends Component {
         document.title=`${this.capitalizeFirstLetter(this.props.category)} - NewsApp`;
     }
    async componentDidMount(){
+      this.props.setProState(0);
       let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9fc68d4b53eb4bdca86447df88a0e505&page=1&PageSize=${this.props.pageSize}`
       this.setState({loading:true});
+      this.props.setProState(30);
+
       let data= await fetch(url);
       let parsedData= await data.json();
       this.setState({
@@ -45,6 +48,8 @@ export class News extends Component {
       this.setState({
         loading:false
     });
+      this.props.setProState(100);
+
 
        }
 
