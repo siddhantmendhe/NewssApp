@@ -14,7 +14,8 @@ export class News extends Component {
     static propTypes={
         country:PropTypes.string,
         pageSize:PropTypes.number,
-        category:PropTypes.string
+        category:PropTypes.string,
+        apikey:PropTypes.string
 
     }
     capitalizeFirstLetter=(string)=> {
@@ -34,7 +35,7 @@ export class News extends Component {
     }
    async componentDidMount(){
       this.props.setProState(0);
-      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9fc68d4b53eb4bdca86447df88a0e505&page=1&PageSize=${this.props.pageSize}`
+      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=1&PageSize=${this.props.pageSize}`
       this.setState({loading:true});
       this.props.setProState(30);
 
@@ -92,7 +93,7 @@ export class News extends Component {
 
           
         this.setState({page:this.state.page+1});
-        let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9fc68d4b53eb4bdca86447df88a0e505&page=${this.state.page}&PageSize=${this.props.pageSize}`;
+        let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&PageSize=${this.props.pageSize}`;
         this.setState({loading:true});
         let data= await fetch(url);
         let parsedData= await data.json();
