@@ -43,12 +43,11 @@ export class News extends Component {
       let parsedData= await data.json();
       this.setState({
         articles:parsedData.articles,
-        totalResults:parsedData.totalResults
+        totalResults:parsedData.totalResults,
+        loading:false
         });
     
-      this.setState({
-        loading:false
-    });
+    
       this.props.setProState(100);
 
 
@@ -93,7 +92,7 @@ export class News extends Component {
 
           
         this.setState({page:this.state.page+1});
-        let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&PageSize=${this.props.pageSize}`;
+        let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page+1}&PageSize=${this.props.pageSize}`;
         this.setState({loading:true});
         let data= await fetch(url);
         let parsedData= await data.json();
@@ -101,7 +100,8 @@ export class News extends Component {
         this.setState({
             articles:this.state.articles.concat(parsedData.articles),
             totalResults:parsedData.totalResults,
-            loading:false
+            loading:false,
+            
         });
         
 
