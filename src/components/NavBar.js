@@ -1,7 +1,8 @@
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-const NavBar=()=>{
-
+export class NavBar extends Component{
+    render() {
     
         return (
             <div>
@@ -32,7 +33,7 @@ const NavBar=()=>{
                     </nav>
             </div>
         )
-    
+        }
 }
 
 export default NavBar

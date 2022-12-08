@@ -43,11 +43,12 @@ export class News extends Component {
       let parsedData= await data.json();
       this.setState({
         articles:parsedData.articles,
-        totalResults:parsedData.totalResults,
-        loading:false
+        totalResults:parsedData.totalResults
         });
     
-    
+      this.setState({
+        loading:false
+    });
       this.props.setProState(100);
 
 
@@ -100,8 +101,7 @@ export class News extends Component {
         this.setState({
             articles:this.state.articles.concat(parsedData.articles),
             totalResults:parsedData.totalResults,
-            loading:false,
-            
+            loading:false
         });
         
 
